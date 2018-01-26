@@ -1,0 +1,18 @@
+package ufo.unit;
+
+unit UFOUnit
+
+import ufo.model.UFOSighting;
+import ufo.unit.UFOUnit;
+
+rule "UFO"
+when
+$u:	UFOSighting() from ufo
+then
+if (histogram.get($u.getCountry()) == null) {
+histogram.put($u.getCountry(),0);
+}
+else {
+histogram.put($u.getCountry(), ((Integer)histogram.get($u.getCountry()))+1);
+}
+end
