@@ -1,0 +1,34 @@
+package com.redhat.dm7.oopath;
+
+
+import com.redhat.dm7.oopath.model.Person;
+import com.redhat.dm7.oopath.model.Pet;
+
+//rule "Find my grandchildren"
+//when
+//	$p:Person()
+//	$child: Person() from $p.getChildren()
+//	$grandChild: Person() from $child.getChildren()
+//then
+//	System.out.println($grandChild.getName() + " is a grandchild of " + $p.getName());
+//end
+
+rule "Find my grandchildren OOPath"
+when
+	//Implement the rule above with an OOPath oneliner.
+	
+	$p: Person($grandChild: /children/children)
+then
+	System.out.println("[OOPath]: " + $grandChild.getName() + " is a grandchild of " + $p.getName());
+end
+
+
+rule "Find rabbit pet names of grandchildren"
+
+when
+$p: Person($rabbitPetName: /children/children/pet[species == Pet.SPECIES.RABBIT]/name)
+then
+// this is printing grand parent name. I want to print grandcild name
+System.out.println("[OOPath] GrandChild "+$p.getName()+" has a rabbit "+$rabbitPetName);
+end
+

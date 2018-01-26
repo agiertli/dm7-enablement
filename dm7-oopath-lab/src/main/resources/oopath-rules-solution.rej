@@ -19,3 +19,11 @@ then
 	System.out.println("OOPath: " + $grandChild.getName() + " is a grandchild of " + $p.getName());
 end
 
+rule "Find rabbit pet names of grandchildren"
+
+when
+$p: Person($rabbitPetName: /children/children/pet[species == Pet.SPECIES.RABBIT]/name)
+then
+System.out.println("GrandChild "+$p.getName()+" has a rabbit "+$rabbitPetName);
+end
+

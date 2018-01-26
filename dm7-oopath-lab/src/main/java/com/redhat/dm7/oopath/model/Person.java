@@ -9,6 +9,8 @@ public class Person {
 	
 	private String name;
 	
+	private Set<Pet> pet;
+	
 	private int age;
 	
 	public Person(String name, int age) {
@@ -42,6 +44,14 @@ public class Person {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public Set<Pet> getPet() {
+		return pet;
+	}
+
+	public void setPet(Set<Pet> pet) {
+		this.pet = pet;
 	}
 	
 }
