@@ -9,7 +9,7 @@ public class Person {
 	
 	private String name;
 	
-	private Set<Pet> pet;
+	private Set<Pet> pet = new HashSet<Pet>();
 	
 	private int age;
 	
@@ -28,6 +28,10 @@ public class Person {
 	
 	public void addChild(Person child) {
 		children.add(child);
+	}
+	
+	public void addPet(Pet pet) {
+		this.pet.add(pet);
 	}
 
 	public String getName() {

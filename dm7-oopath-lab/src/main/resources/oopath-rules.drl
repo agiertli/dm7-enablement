@@ -26,10 +26,9 @@ end
 rule "Find rabbit pet names of grandchildren"
 
 when
-$p: Person($rabbitPetName: /children/children/pet[species == Pet.SPECIES.RABBIT]/name)
-
+//TODO: implement me using OOPath
 then
-// this is printing grand parent name. I want to print grandcild name
+
 System.out.println("[OOPath] " + $p.getName() + " has a grandchild who has a rabbit "+$rabbitPetName);
 end
 

@@ -19,11 +19,16 @@ then
 	System.out.println("OOPath: " + $grandChild.getName() + " is a grandchild of " + $p.getName());
 end
 
-rule "Find rabbit pet names of grandchildren"
 
+rule "Find rabbit pet names of grandchildren"
+// This rule will print  grand parent name and pet name of his/her grandchild, if the grandchild owns a rabbit. 
+//If you want to print grandchild name, it's getting a bit messy, see:
+//	$p: Person($grandChild: /children/children)
+//	Person($rabbitPetName: /pet[species == Pet.SPECIES.RABBIT]/name) from $grandChild
 when
 $p: Person($rabbitPetName: /children/children/pet[species == Pet.SPECIES.RABBIT]/name)
-then
-System.out.println("GrandChild "+$p.getName()+" has a rabbit "+$rabbitPetName);
-end
 
+then
+
+System.out.println("[OOPath] " + $p.getName() + " has a grandchild who has a rabbit "+$rabbitPetName);
+end

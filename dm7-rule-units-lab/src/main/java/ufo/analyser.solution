@@ -26,31 +26,28 @@ public class Analyser {
 	private static String CSV_SPLIT = ",";
 	private static RuleUnitExecutor EXECUTOR;
 	private static BufferedReader br;
-
+	
 	public static Integer COUNTER = 0;
 
 	public static void main(String[] args) throws IOException {
 
 		KieServices kieServices = KieServices.Factory.get();
 		KieContainer kieContainer = kieServices.newKieClasspathContainer();
-		// Create kiebase 'KBase1'
+		KieBase kieBase = kieContainer.getKieBase("KBase1");
 
-		// create new typed datasource (type = UFOSighting)
-
-		// create new unit executor bound to previously created KieBase
-
-		// create following executor binding - DataStream to "ufo"
-
+		DataSource<UFOSighting> dataStream = DataSource.create();
+		EXECUTOR = RuleUnitExecutor.create().bind(kieBase);
+		EXECUTOR.bindVariable("ufo", dataStream);
 		Map<String, Integer> histogram = new HashMap<String, Integer>();
-
-		// create following executor binding - Map<String,Integer> to "histogram"
-
-		// start the executor in active mode
+		EXECUTOR.bindVariable("histogram", histogram);
 		
-		// start parsing the data
 
-		System.out.println("ufos analysed:" + COUNTER);
+		new Thread(() -> EXECUTOR.runUntilHalt(UFOUnit.class)).start();
 
+		parseData(CSV_FILE, dataStream);
+		
+		System.out.println("ufos analysed:"+COUNTER);
+		
 		for (String key : histogram.keySet()) {
 
 			System.out.println("key:" + key);
@@ -119,10 +116,11 @@ public class Analyser {
 			ufo.setDuration(sighting[6]);
 			ufo.setComments(sighting[7]);
 			COUNTER++;
-			// insert ufo sighting into the datastream
+			dataStream.insert(ufo);
+
 		}
 
-		// once the file is processed, end the rule processing
+		EXECUTOR.halt();
 	}
 
 }

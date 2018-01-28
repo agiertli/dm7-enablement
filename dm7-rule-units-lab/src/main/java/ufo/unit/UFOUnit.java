@@ -24,19 +24,19 @@ public class UFOUnit implements RuleUnit {
 		return ufo;
 	}
 
-	@Override
-	public void onStart() {
-		System.out.println(getName() + " started.");
-	}
+//	@Override
+//	public void onStart() {
+//		System.out.println(getName() + " started.");
+//	}
+//
+//	@Override
+//	public void onEnd() {
+//		System.out.println(getName() + " ended.");
+//	}
 
-	@Override
-	public void onEnd() {
-		System.out.println(getName() + " ended.");
-	}
-
-	private String getName() {
-		return "UFOUnit";
-	}
+//	private String getName() {
+//		return "UFOUnit";
+//	}
 
 	public Map<String, Integer> getHistogram() {
 		return histogram;

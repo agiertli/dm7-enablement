@@ -34,28 +34,9 @@ public class Pets {
 		alan.addChild(jack);
 		alan.addChild(amy);
 
-		Set<Pet> amysPets = new HashSet<Pet>();
+		amy.addPet(new Pet(Pet.SPECIES.RABBIT, "snowBall"));
+		amy.addPet(new Pet(Pet.SPECIES.DOG, "chubby"));
 
-		Pet snowBall = new Pet(Pet.SPECIES.RABBIT, "snowBall");
-		Pet fatDog = new Pet(Pet.SPECIES.DOG, "chubby");
-
-		amysPets.add(snowBall);
-		amysPets.add(fatDog);
-
-		amy.setPet(amysPets);
-
-		Set<Pet> jackPets = new HashSet<Pet>();
-
-//		Pet fluffyCat = new Pet(Pet.SPECIES.CAT, "fluffy");
-//		Pet goldFish = new Pet(Pet.SPECIES.FISH, "goldy");
-//		Pet bunny = new Pet(Pet.SPECIES.RABBIT, "nibbles");
-//
-//
-//		jackPets.add(fluffyCat);
-//		jackPets.add(goldFish);
-//		jackPets.add(bunny);
-//		jack.setPet(jackPets);
-		
 		kieSession.insert(james);
 		kieSession.insert(duncan);
 		kieSession.insert(alan);
