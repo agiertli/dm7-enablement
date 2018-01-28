@@ -43,17 +43,17 @@ import org.redhat.gss.DebugList;
  */
 public class ParallelEvaluationTest {
 
-	private static final Integer NUMBER_OF_RULES = 1800;
-	private static final Integer NUMBER_OF_FACTS = 400;
-	private static final Integer NUMBER_OF_ITERATIONS = 250;
-	private static final Boolean SERIAL = false;
+	private static final Integer NUMBER_OF_RULES = 50; //1800
+	private static final Integer NUMBER_OF_FACTS = 20; // 400
+	private static final Integer NUMBER_OF_ITERATIONS = 10; //250
+	private static final Boolean SERIAL = true;
 	private static final Boolean PARALLEL = true;
 
 	@Test(timeout = 100000L)
 	public void test() throws InterruptedException {
 
 		System.out.println("wait so we can start collecting thread dumps");
-		Thread.sleep(10000);
+	//	Thread.sleep(10000);
 
 		StringBuilder sb = new StringBuilder(400);
 		sb.append("global java.util.List list;\n");
